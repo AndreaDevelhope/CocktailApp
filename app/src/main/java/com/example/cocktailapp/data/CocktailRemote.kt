@@ -1,4 +1,5 @@
-package com.example.cocktailapp
+package com.example.cocktailapp.data
+
 
 data class CocktailRemote(val drinks: List<Drink>)
 
@@ -8,3 +9,4 @@ data class Drink(
     val strAlcoholic: String,
     val strDrinkThumb: String
 )
+

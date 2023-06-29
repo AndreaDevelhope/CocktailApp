@@ -1,4 +1,4 @@
-package com.example.cocktailapp
+package com.example.cocktailapp.data
 
 import retrofit2.http.GET
 

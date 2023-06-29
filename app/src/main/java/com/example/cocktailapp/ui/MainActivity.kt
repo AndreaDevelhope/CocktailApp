@@ -1,11 +1,11 @@
-package com.example.cocktailapp
+package com.example.cocktailapp.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import coil.api.load
+import com.example.cocktailapp.data.Drink
 import com.example.cocktailapp.databinding.ActivityMainBinding
-
 
 class MainActivity : AppCompatActivity() {
 
