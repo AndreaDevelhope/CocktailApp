@@ -17,19 +17,22 @@
         android:id="@+id/drink_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/drink_image" />
+        android:contentDescription="@string/drink_image"
+        android:layout_marginBottom="10dp"/>
 
     <TextView
         android:id="@+id/drink_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"/>
 
     <TextView
         android:id="@+id/drink_is_alcholic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"/>
 
     <ScrollView
         android:layout_width="match_parent"
