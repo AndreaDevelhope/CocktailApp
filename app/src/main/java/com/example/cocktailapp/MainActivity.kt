@@ -19,28 +19,28 @@ class MainActivity : AppCompatActivity() {
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
-    private val cocktailService = retrofit.create(CocktailService::class.java)
+    private val cocktailService = retrofit.create(TheCocktaildbAPI::class.java)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.getDrink.setOnClickListener {
-            getDrinksApi()
+            getRandomDrinkFromApi()
         }
     }
 
-    private fun showDrink(randomCocktail: Drink){
-        binding.drinkInstructionsIt.text = randomCocktail.strInstructionsIT
-        binding.drinkName.text = randomCocktail.strDrink
-        binding.drinkIsAlcholic.text = randomCocktail.strAlcoholic
-        binding.drinkImage.load(randomCocktail.strDrinkThumb)
+    private fun showDrink(drink: Drink){
+        binding.drinkImage.load(drink.strDrinkThumb)
+        binding.drinkName.text = drink.strDrink
+        binding.drinkIsAlcholic.text = drink.strAlcoholic
+        binding.drinkInstructionsIt.text = drink.strInstructionsIT
     }
 
-    private fun getDrinksApi(){
+    private fun getRandomDrinkFromApi(){
         lifecycleScope.launch {
-            val randomCocktail = cocktailService.getRandomCocktail()
-            showDrink(randomCocktail.drinks[0])
+            val randomDrink = cocktailService.getRandomCocktail()
+            showDrink(randomDrink.drinks[0])
         }
     }
 }

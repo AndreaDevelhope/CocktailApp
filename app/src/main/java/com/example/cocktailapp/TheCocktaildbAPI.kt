@@ -2,7 +2,7 @@ package com.example.cocktailapp
 
 import retrofit2.http.GET
 
-interface CocktailService {
+interface TheCocktaildbAPI {
     @GET("1/random.php")
-    suspend fun getRandomCocktail(): RandomCocktail
+    suspend fun getRandomCocktail(): CocktailRemote
 }
