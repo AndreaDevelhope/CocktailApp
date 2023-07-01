@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this, CocktailViewModelFactory())[CocktailViewModel::class.java]
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.getDrink.setOnClickListener {
+        binding.getCocktail.setOnClickListener {
             textVisibility()
             viewModel.getRandomCocktailFromApi()
         }
@@ -29,17 +29,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showDrink(cocktail: CocktailDetailsModel) {
-        binding.drinkImage.load(cocktail.cocktailThumbnail)
-        binding.drinkName.text = cocktail.cocktailName
-        binding.drinkIsAlcholic.text = cocktail.cocktailIsAlcoholic
-        binding.recipeInstructionsIt.text = cocktail.cocktailInstructionsIT
-        binding.ingredientsList.text = cocktail.ingredients.toString()
+        binding.cocktailImage.load(cocktail.cocktailThumbnail)
+        binding.cocktailName.text = cocktail.cocktailName
+        binding.cocktailIsAlcholic.text = cocktail.cocktailIsAlcoholic
+        binding.cocktailRecipeInstructionsIt.text = cocktail.cocktailInstructionsIT
+        binding.cocktailIngredientsList.text = cocktail.ingredients.toString()
     }
 
     private fun textVisibility() {
-        if (binding.ingredientsText.visibility == View.VISIBLE) return
-        binding.ingredientsText.visibility = View.VISIBLE
-        binding.recipeText.visibility = View.VISIBLE
+        if (binding.cocktailIngredientsText.visibility == View.VISIBLE) return
+        binding.cocktailIngredientsText.visibility = View.VISIBLE
+        binding.cocktailRecipeText.visibility = View.VISIBLE
     }
 
 }

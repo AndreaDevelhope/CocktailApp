@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">CocktailApp</string>
     <string name="button_text">Have a Drink!</string>
-    <string name="drink_image">Drink Image</string>
+    <string name="cocktail_image">Cocktail Image</string>
     <string name="ingredients">Ingredients:</string>
     <string name="recipe">Recipe:</string>
 </resources>
