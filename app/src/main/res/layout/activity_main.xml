@@ -17,33 +17,54 @@
         android:id="@+id/drink_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/drink_image"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp"
+        android:contentDescription="@string/drink_image" />
 
     <TextView
         android:id="@+id/drink_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="@dimen/standard_margin" />
 
     <TextView
         android:id="@+id/drink_is_alcholic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="@dimen/standard_margin" />
+
+    <TextView
+        android:id="@+id/ingredients_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ingredients"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/ingredients_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/standard_margin" />
+
+    <TextView
+        android:id="@+id/recipe_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/recipe"
+        android:visibility="gone"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/drink_instructions_it"
+            android:id="@+id/recipe_instructions_it"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:scrollbars="vertical"/>
+            android:scrollbars="vertical" />
     </ScrollView>
 
 

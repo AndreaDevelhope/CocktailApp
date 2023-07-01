@@ -1,6 +1,6 @@
 package com.example.cocktailapp.data
 
-class CocktailRepository(private val theCocktaildbAPI: TheCocktaildbAPI) {
+class CocktailRepository(private val theCocktailDBAPI: TheCocktailDBAPI) {
 
-    suspend fun getRandomDrinkFromApi() = theCocktaildbAPI.getRandomCocktail()
+    suspend fun getRandomCocktailFromApi() = theCocktailDBAPI.getRandomCocktail()
 }
