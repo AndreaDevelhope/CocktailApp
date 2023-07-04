@@ -1,6 +1,6 @@
 package com.example.cocktailapp.domain.models
 
-data class CocktailDetailsModel(
+data class Cocktail(
     val cocktailName: String,
     val cocktailInstructionsIT: String,
     val cocktailIsAlcoholic: String,

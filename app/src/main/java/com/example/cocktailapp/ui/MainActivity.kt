@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import coil.api.load
 import com.example.cocktailapp.databinding.ActivityMainBinding
-import com.example.cocktailapp.domain.models.CocktailDetailsModel
+import com.example.cocktailapp.domain.models.Cocktail
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,11 +24,11 @@ class MainActivity : AppCompatActivity() {
             viewModel.getRandomCocktailFromApi()
         }
         viewModel.cocktailLiveData.observe(this) {
-            showDrink(it[0])
+            showDrink(it)
         }
     }
 
-    private fun showDrink(cocktail: CocktailDetailsModel) {
+    private fun showDrink(cocktail: Cocktail) {
         binding.cocktailImage.load(cocktail.cocktailThumbnail)
         binding.cocktailName.text = cocktail.cocktailName
         binding.cocktailIsAlcholic.text = cocktail.cocktailIsAlcoholic

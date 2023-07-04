@@ -1,9 +1,9 @@
 package com.example.cocktailapp.data
 
 
-data class CocktailRemote(val drinks: List<Cocktail>)
+data class CocktailListRemote(val drinks: List<CocktailRemote>)
 
-data class Cocktail(
+data class CocktailRemote(
     val strDrink: String,
     val strInstructionsIT: String,
     val strAlcoholic: String,
