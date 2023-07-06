@@ -3,10 +3,12 @@ package com.example.cocktailapp.ui
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import coil.api.load
+import com.example.cocktailapp.MyApplication
+import com.example.cocktailapp.R
 import com.example.cocktailapp.databinding.ActivityMainBinding
 import com.example.cocktailapp.domain.models.Cocktail
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,7 +18,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this, CocktailViewModelFactory())[CocktailViewModel::class.java]
+        viewModel =
+            (application as MyApplication).cocktailViewModelFactory.create(CocktailViewModel::class.java)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.getCocktail.setOnClickListener {
@@ -25,6 +29,9 @@ class MainActivity : AppCompatActivity() {
         }
         viewModel.cocktailLiveData.observe(this) {
             showDrink(it)
+        }
+        viewModel.firstTimeUserLiveData.observe(this) {
+            showWelcomeText(it)
         }
     }
 
@@ -40,6 +47,20 @@ class MainActivity : AppCompatActivity() {
         if (binding.cocktailIngredientsText.visibility == View.VISIBLE) return
         binding.cocktailIngredientsText.visibility = View.VISIBLE
         binding.cocktailRecipeText.visibility = View.VISIBLE
+        binding.welcomeText.visibility = View.GONE
+    }
+
+    private fun showWelcomeText(firstTimeUser: Boolean) {
+        if (firstTimeUser) {
+            binding.welcomeText.text = getString(R.string.welcome_text_first_time)
+            Snackbar.make(
+                binding.getCocktail,
+                getString(R.string.click_the_button),
+                Snackbar.LENGTH_LONG
+            ).show()
+        } else {
+            binding.welcomeText.text = getString(R.string.welcome_text)
+        }
     }
 
 }

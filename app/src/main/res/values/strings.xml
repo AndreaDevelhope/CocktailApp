@@ -4,4 +4,7 @@
     <string name="cocktail_image">Cocktail Image</string>
     <string name="ingredients">Ingredients:</string>
     <string name="recipe">Recipe:</string>
+    <string name="welcome_text_first_time">Welcome!</string>
+    <string name="welcome_text">Welcome back!</string>
+    <string name="click_the_button">Click the Button above and Have a Drink!</string>
 </resources>
