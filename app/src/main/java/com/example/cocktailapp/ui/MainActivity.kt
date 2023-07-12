@@ -1,14 +1,17 @@
 package com.example.cocktailapp.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import coil.api.load
 import com.example.cocktailapp.MyApplication
 import com.example.cocktailapp.R
 import com.example.cocktailapp.databinding.ActivityMainBinding
 import com.example.cocktailapp.domain.models.Cocktail
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,12 +30,18 @@ class MainActivity : AppCompatActivity() {
             textVisibility()
             viewModel.getRandomCocktailFromApi()
         }
-        viewModel.cocktailLiveData.observe(this) {
-            showDrink(it)
+        lifecycleScope.launch {
+            viewModel.cocktailFlow.collect {
+                showDrink(it)
+                Log.d("MainActivity", "$it")
+            }
         }
+
         viewModel.firstTimeUserLiveData.observe(this) {
             showWelcomeText(it)
+            Log.d("MainActivity", "$it")
         }
+
     }
 
     private fun showDrink(cocktail: Cocktail) {

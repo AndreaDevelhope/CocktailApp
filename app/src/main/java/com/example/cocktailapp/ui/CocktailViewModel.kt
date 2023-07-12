@@ -8,6 +8,8 @@ import com.example.cocktailapp.domain.models.Cocktail
 import com.example.cocktailapp.domain.usecase.GetRandomCocktailUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
 
 
@@ -16,8 +18,8 @@ const val KEY_FIRST_TIME_USER = "first_time_user"
 
 class CocktailViewModel(private val getRandomCocktailUseCase: GetRandomCocktailUseCase, private val preferences: SharedPreferences) :
     ViewModel() {
-    private val _cocktailLiveData = MutableLiveData<Cocktail>()
-    val cocktailLiveData: LiveData<Cocktail> = _cocktailLiveData
+    private val _cocktailFlow = MutableSharedFlow<Cocktail>()
+    val cocktailFlow: SharedFlow<Cocktail> = _cocktailFlow
 
     private val _firstTimeUserLiveData = MutableLiveData<Boolean>()
     val firstTimeUserLiveData: LiveData<Boolean> = _firstTimeUserLiveData
@@ -39,7 +41,7 @@ class CocktailViewModel(private val getRandomCocktailUseCase: GetRandomCocktailU
     fun getRandomCocktailFromApi() {
         CoroutineScope(Dispatchers.IO).launch {
             val randomCocktail = getRandomCocktailUseCase.invoke()
-            _cocktailLiveData.postValue(randomCocktail)
+            _cocktailFlow.emit(randomCocktail)
         }
     }
 
