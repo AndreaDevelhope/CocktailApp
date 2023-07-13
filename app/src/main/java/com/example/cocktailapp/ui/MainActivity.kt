@@ -5,7 +5,7 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import coil.api.load
+import coil.load
 import com.example.cocktailapp.MyApplication
 import com.example.cocktailapp.R
 import com.example.cocktailapp.databinding.ActivityMainBinding
@@ -37,9 +37,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        viewModel.firstTimeUserLiveData.observe(this) {
+        lifecycleScope.launch {
+
+        viewModel.firstTimeUserLiveData.collect {
             showWelcomeText(it)
             Log.d("MainActivity", "$it")
+        }
         }
 
     }

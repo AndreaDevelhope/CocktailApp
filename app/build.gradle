@@ -1,15 +1,17 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
     namespace 'com.example.cocktailapp'
     compileSdk 33
 
+
     defaultConfig {
         applicationId "com.example.cocktailapp"
-        minSdk 24
+        minSdk 26
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -56,8 +58,16 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
 
     //image loader with koil
-    implementation("io.coil-kt:coil:0.9.1")
+    implementation("io.coil-kt:coil:2.4.0")
 
     //lifecycle components
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
+
+    //room for database
+    def room_version = "2.5.2"
+
+    implementation("androidx.room:room-runtime:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
+    implementation "androidx.room:room-ktx:2.5.2"
+
 }

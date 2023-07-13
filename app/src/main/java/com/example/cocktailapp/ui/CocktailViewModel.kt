@@ -1,9 +1,8 @@
 package com.example.cocktailapp.ui
 
 import android.content.SharedPreferences
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.cocktailapp.domain.models.Cocktail
 import com.example.cocktailapp.domain.usecase.GetRandomCocktailUseCase
 import kotlinx.coroutines.CoroutineScope
@@ -21,8 +20,8 @@ class CocktailViewModel(private val getRandomCocktailUseCase: GetRandomCocktailU
     private val _cocktailFlow = MutableSharedFlow<Cocktail>()
     val cocktailFlow: SharedFlow<Cocktail> = _cocktailFlow
 
-    private val _firstTimeUserLiveData = MutableLiveData<Boolean>()
-    val firstTimeUserLiveData: LiveData<Boolean> = _firstTimeUserLiveData
+    private val _firstTimeUserLiveData = MutableSharedFlow<Boolean>(1)
+    val firstTimeUserLiveData:  SharedFlow<Boolean> = _firstTimeUserLiveData
 
     init {
         checkFirstTimeUser(preferences)
@@ -32,10 +31,16 @@ class CocktailViewModel(private val getRandomCocktailUseCase: GetRandomCocktailU
         val firstTimeUser = preferences.getBoolean(KEY_FIRST_TIME_USER, true)
         if (firstTimeUser){
             preferences.edit().putBoolean(KEY_FIRST_TIME_USER,false).apply()
-            _firstTimeUserLiveData.postValue(true)
+            viewModelScope.launch {
+
+            _firstTimeUserLiveData.emit(true)
+            }
             return
         }
-        _firstTimeUserLiveData.postValue(false)
+        viewModelScope.launch {
+
+        _firstTimeUserLiveData.emit(false)
+        }
     }
 
     fun getRandomCocktailFromApi() {

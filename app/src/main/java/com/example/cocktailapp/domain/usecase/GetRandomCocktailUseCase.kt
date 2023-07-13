@@ -5,8 +5,6 @@ import com.example.cocktailapp.domain.models.Cocktail
 
 class GetRandomCocktailUseCase(private val cocktailRepository: CocktailRepository) {
 
-    suspend operator fun invoke(): Cocktail {
-        val cocktailRemote = cocktailRepository.getRandomCocktailFromApi()
-        return cocktailRepository.toCocktail(cocktailRemote)
-    }
+    suspend operator fun invoke(): Cocktail = cocktailRepository.getRandomCocktailFromApi()
+
 }
