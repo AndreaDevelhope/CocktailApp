@@ -38,7 +38,7 @@ object DataDependencyInjection {
     private fun createBeerDao(appContext: Context): CocktailDao {
         val db = Room.databaseBuilder(
             appContext,
-            CocktailDatabase::class.java, "database-beer"
+            CocktailDatabase::class.java, "database-cocktail"
         ).build()
 
         return db.cocktailDao()

@@ -1,5 +1,6 @@
 package com.example.cocktailapp.data.remote
 
+import com.example.cocktailapp.data.local.CocktailLocal
 import com.example.cocktailapp.domain.models.Cocktail
 
 
@@ -29,6 +30,16 @@ data class CocktailRemote(
 
 fun CocktailRemote.toCocktail(): Cocktail {
     return Cocktail(
+        cocktailName = strDrink,
+        cocktailInstructionsIT = strInstructionsIT,
+        cocktailIsAlcoholic = strAlcoholic,
+        cocktailThumbnail = strDrinkThumb,
+        ingredients = getIngredientsList()
+    )
+}
+
+fun CocktailRemote.toCocktailLocal(): CocktailLocal {
+    return CocktailLocal(
         cocktailName = strDrink,
         cocktailInstructionsIT = strInstructionsIT,
         cocktailIsAlcoholic = strAlcoholic,
